@@ -58,6 +58,17 @@
     <footer class="bg-dark text-white text-center py-3">
         <p>&copy; 2025 Shoplex. All Rights Reserved.</p>
     </footer>
-
+<script>
+        function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+        let cartCountElements = document.querySelectorAll("#cart-count");
+        
+        cartCountElements.forEach(element => {
+            element.textContent = `(${totalItems})`;
+        });
+    }
+    updateCartCount();
+</script>
 </body>
 </html>

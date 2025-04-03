@@ -300,10 +300,14 @@
         }
 
         function updateCartCount() {
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
-            let cartCount = cart.length;
-            document.getElementById("cart-count").textContent = `(${cartCount})`;
-        }
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+        let cartCountElements = document.querySelectorAll("#cart-count");
+        
+        cartCountElements.forEach(element => {
+            element.textContent = `(${totalItems})`;
+        });
+    }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>

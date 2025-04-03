@@ -71,5 +71,19 @@
     </footer>
 
     <script src="assets/js/contact.js"></script>
+    <script>
+        
+function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    let cartCountElements = document.querySelectorAll("#cart-count");
+    
+    cartCountElements.forEach(element => {
+        element.textContent = `(${totalItems})`;
+    });
+}
+
+updateCartCount();
+    </script>
 </body>
 </html>
