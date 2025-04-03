@@ -68,9 +68,19 @@ function addToCart(productId) {
     let product = productDetails[productId];
 
     if (product) {
-        cart.push(product);
+        let existingProductIndex = cart.findIndex(item => item.id == productId);
+        if (existingProductIndex > -1) {
+            cart[existingProductIndex].quantity = (cart[existingProductIndex].quantity || 1) + 1;
+        } else {
+            cart.push({ 
+                id: productId, 
+                name: product.name, 
+                price: product.price, 
+                quantity: 1 
+            });
+        }
+        
         localStorage.setItem("cart", JSON.stringify(cart));
-
         updateCartCount();
         alert(`${product.name} has been added to your cart!`);
     }
